@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+<html>
+<head>
+    
+    <title>Admin Dashboard</title>
+    
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'admin_app:admin_product_list' %}">Products</a></li>
+                <li><a href="{% url 'admin_app:admin_category_list' %}">Categories</a></li>
+                <li><a href="{% url 'admin_app:admin_subcategory_list' %}">Subcategories</a></li>
+                <li><a href="{% url 'admin_app:admin_order_list' %}">Orders</a></li>
+                <li><a href="{% url 'admin_app:admin_user_list' %}">Users</a></li>
+                <li><a href="{% url 'user_app:logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="messages {{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% block content %}
+            <div class="dashboard-overview">
+                <h2>Overview</h2>
+                <div class="overview-stats">
+                    <div class="stat-box">
+                        <h3>Total Products</h3>
+                        <p>{{ total_products }}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Categories</h3>
+                        <p>{{ total_categories }}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Orders</h3>
+                        <p>{{ total_orders }}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Users</h3>
+                        <p>{{ total_users }}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Farmers</h3>
+                        <p>{{ total_farmers }}</p>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Total Buyers</h3>
+                        <p>{{ total_buyers }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Nature's Basket</p>
+    </footer>
+</body>
+</html>

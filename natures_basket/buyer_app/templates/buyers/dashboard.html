@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Buyer Dashboard</h1>
+
+<h2>Recent Orders</h2>
+{% if recent_orders %}
+    <table>
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in recent_orders %}
+                <tr>
+                    <td>{{ order.id }}</td>
+                    <td>{{ order.created_at }}</td>
+                    <td>{{ order.get_total_price }}</td>
+                    <td><a href="{% url 'buyer_app:buyer_order_detail' order.id %}">View</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p>No recent orders.</p>
+{% endif %}
+
+<h2>Wishlist</h2>
+{% if wishlist_items %}
+    <ul>
+        {% for item in wishlist_items %}
+            <li>
+                <a href="{% url 'product_detail' item.product.slug %}">{{ item.product.name }}</a>
+                <a href="{% url 'buyer_app:remove_from_wishlist' item.product.id %}">Remove</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Your wishlist is empty.</p>
+{% endif %}
+
+<p><a href="{% url 'buyer_app:buyer_order_history' %}">View Order History</a></p>
+<p><a href="{% url 'buyer_app:wishlist' %}">View Full Wishlist</a></p>
+<p><a href="{% url 'buyer_app:address_book' %}">Address Book</a></p>
+
+{% endblock %}

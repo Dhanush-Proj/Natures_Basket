@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Order Details</h2>
+
+  <p>Order #{{ order.id }}</p>
+  <p>Date: {{ order.created_at }}</p>
+  <p>Total: ${{ order.total_amount }}</p>
+
+  <h3>Order Items</h3>
+  <ul>
+    {% for item in order.items.all %}
+      <li>
+        {{ item.product.name }} - Quantity: {{ item.quantity }} - Price: ${{ item.price }}
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h3>Shipping Address</h3>
+    {% if order.shipping_address %}
+        <p>
+            {{ order.shipping_address.first_name }} {{ order.shipping_address.last_name }}<br>
+            {{ order.shipping_address.address1 }}<br>
+            {% if order.shipping_address.address2 %}{{ order.shipping_address.address2 }}<br>{% endif %}
+            {{ order.shipping_address.city }}, {{ order.shipping_address.state }} {{ order.shipping_address.postal_code }}<br>
+            {{ order.shipping_address.country }}<br>
+            Phone: {{ order.shipping_address.phone_number }}
+        </p>
+    {% else %}
+        <p>No shipping address associated with this order.</p>
+    {% endif %}
+
+  <p><a href="{% url 'buyer_app:buyer_order_history' %}">Back to Order History</a></p>
+{% endblock %}

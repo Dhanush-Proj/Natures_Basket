@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Search Results</h1>
+
+  {% if query %}
+    <h2>Search results for: "{{ query }}"</h2>
+  {% endif %}
+
+  {% if products %}
+    <div class="product-list">
+      {% for product in products %}
+        <div class="product-item">
+          <a href="{% url 'product_detail' product.slug %}">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+          </a>
+          <p>{{ product.short_description }}</p>
+          <p>Price: ${{ product.price }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No products found matching your search.</p>
+  {% endif %}
+{% endblock %}

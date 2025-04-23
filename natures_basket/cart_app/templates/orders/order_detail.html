@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Order Details</h1>
+
+    <p><strong>Order ID:</strong> {{ order.order_id }}</p>
+    <p><strong>Date:</strong> {{ order.created_at }}</p>
+    <p><strong>Total:</strong> ₹{{ order.get_total }}</p>  <p><strong>Status:</strong>
+        {% if order.is_paid %} Paid {% else %} Pending {% endif %}
+        {% if order.is_shipped %} Shipped {% endif %}
+        {% if order.is_delivered %} Delivered {% endif %}
+    </p>
+
+    <h2>Items:</h2>
+    <ul>
+        {% for item in order.items.all %}
+            <li>{{ item.product.name }} {% if item.variant %} - {{ item.variant.name }} {% endif %} x {{ item.quantity }} - ₹{{ item.price }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Shipping Address:</h2>
+    {% if order.shipping_address %}  <p>{{ order.shipping_address.first_name }} {{ order.shipping_address.last_name }}<br>
+        {{ order.shipping_address.address1 }}<br>
+        {% if order.shipping_address.address2 %}{{ order.shipping_address.address2 }}<br>{% endif %}
+        {{ order.shipping_address.city }}, {{ order.shipping_address.state }} {{ order.shipping_address.postal_code }}<br>
+        {{ order.shipping_address.country }}<br>
+        Phone: {{ order.shipping_address.phone_number }}
+    </p>
+    {% endif %}
+
+{% endblock %}

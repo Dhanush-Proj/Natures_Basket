@@ -1,0 +1,547 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>ThewayShop - Ecommerce Bootstrap 4 HTML Template</title>
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{% static 'images/apple-touch-icon.png' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+    </head>
+
+<body>
+ 
+
+    
+                <header class="main-header">
+                    <
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-default bootsnav">
+                        <div class="container">
+                            <div class="navbar-header">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                                    aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                                    <i class="fa fa-bars"></i>
+                                </button>
+            NATURES BASKET                </div>
+                            <div class="collapse navbar-collapse" id="navbar-menu">
+                                <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                                    <li class="nav-item active"><a class="nav-link" href="{% url 'user_app:homepage' %}">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'user_app:homepage' %}">About Us</a></li>
+                                    <!-- <li class="dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SHOP</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="">Sidebar Shop</a></li>
+                                            <li><a href="/">Shop Detail</a></li>
+                                            <li><a href="/">Cart</a></li>
+                                            <li><a href="/">Checkout</a></li>
+                                            <li><a href="/">My Account</a></li>
+                                            <li><a href="/">Wishlist</a></li>
+                                        </ul>
+                                    </li> -->
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'user_app:homepage' %}">Gallery</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'user_app:homepage' %}">Contact Us</a></li>
+                                    
+                                {% if user.usertype == 'buyer' %} 
+                                    <li class="dropdown">
+                                        <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">My Account</a>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="#">Profile</a></li>
+                                            <li><a href="{% url 'user_app:logout' %}">Logout</a></li>
+                                        </ul>
+                                    </li>
+                                    {% else %}
+            
+                                    <li class="nav-item"><a class="nav-link" href="{% url 'user_app:login' %}">Login</a></li>
+               
+              {% endif %}
+                                </ul>
+                            </div>
+                            <div class="attr-nav">
+                                <ul>
+                                    <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                                        <a href="{% url 'cart_app:view_cart' %}">
+                                            <i class="fa fa-shopping-bag"></i>
+                                            
+                                            My Cart  {% if request.session.cart %}
+                                                ({{ request.session.cart|length }})
+                                            {% else %}
+                                                (0)
+                                            {% endif %}
+                                        
+                                        </a>
+                                    
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="side">
+                            <a href="#" class="close-side"><i class="fa fa-times"></i></a>
+                            <li class="cart-box">
+                                <ul class="cart-list">
+                                    <li>
+                                        <a href="#" class="photo"><img src="/static/images/img-pro-01.jpg" class="cart-thumb"
+                                            alt="" /></a>
+                                        <h6><a href="#">Delica omtantur </a></h6>
+                                        <p>1x - <span class="price">$80.00</span></p>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="photo"><img src="/static/images/img-pro-02.jpg" class="cart-thumb"
+                                            alt="" /></a>
+                                        <h6><a href="#">Omnes ocurreret</a></h6>
+                                        <p>1x - <span class="price">$60.00</span></p>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="photo"><img src="/static/images/img-pro-03.jpg" class="cart-thumb"
+                                            alt="" /></a>
+                                        <h6><a href="#">Agam facilisis</a></h6>
+                                        <p>1x - <span class="price">$40.00</span></p>
+                                    </li>
+                                    <li class="total">
+                                        <a href="{% url 'cart_app:view_cart' %}" class="btn btn-default hvr-hover btn-cart">VIEW CART</a>
+                                        <span class="float-right"><strong>Total</strong>: $180.00</span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </div>
+                        </nav>
+                    </header>
+               
+    <!-- Start Top Search -->
+    <div class="top-search">
+        <div class="container">
+            <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                <input type="text" class="form-control" placeholder="Search">
+                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+            </div>
+        </div>
+    </div>
+    <!-- End Top Search -->
+
+        <!-- Start All Title Box -->
+        <div class="all-title-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h2>Cart</h2>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Shop</a></li>
+                            <li class="breadcrumb-item active">Cart</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End All Title Box -->
+ 
+        <div class="cart-box-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="table-main table-responsive">
+                            <div class="container-fluid py-5">
+                                <div class="container py-5">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Products</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Price</th>
+                                                    <th scope="col">Quantity</th>
+                                                    <th scope="col">Total</th>
+                                                    <th scope="col">Handle</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {% for item in cart_items %}
+                                                <tr>
+                                                    <th scope="row">
+                                                        <div class="d-flex align-items-center">
+                                                            <img src="{{ item.product.image.url }}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="{{ item.product.name }}">
+                                                        </div>
+                                                    </th>
+                                                    <td>
+                                                        <p class="mb-0 mt-4">{{ item.product.name }}</p>
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0 mt-4">${{ item.product.price }}</p>
+                                                    </td>
+                                                    <td>
+                                                        <div class="input-group quantity mt-4" style="width: 100px;">
+                                                            <div class="input-group-btn">
+                                                                <button class="btn btn-sm btn-minus rounded-circle bg-light border" onclick="updateQuantity({{ item.product.id }}, -1)">
+                                                                    <i class="fa fa-minus"></i>
+                                                                </button>
+                                                            </div>
+                                                            <input type="text" class="form-control form-control-sm text-center border-0" value="{{ item.quantity }}" id="quantity-{{ item.product.id }}">
+                                                            <div class="input-group-btn">
+                                                                <button class="btn btn-sm btn-plus rounded-circle bg-light border" onclick="updateQuantity({{ item.product.id }}, 1)">
+                                                                    <i class="fa fa-plus"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <p class="mb-0 mt-4">${{ item.item_total }}</p>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-md rounded-circle bg-light border mt-4" onclick="removeFromCart({{ item.product.id }})">
+                                                            <i class="fa fa-times text-danger"></i>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                                {% empty %}
+                                                <tr>
+                                                    <td colspan="6" class="text-center">Your cart is empty.</td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!-- <div class="mt-5">
+                                        <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
+                                        <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
+                                    </div> -->
+                                    <div class="row g-4 justify-content-end">
+                                        <div class="col-8"></div>
+                                        <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
+                                            <div class="bg-light rounded">
+                                                <div class="p-4">
+                                                    <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
+                                                    <div class="d-flex justify-content-between mb-4">
+                                                        <h5 class="mb-0 me-4">Subtotal:</h5>
+                                                        <p class="mb-0">${{ total_price }}</p>
+                                                    </div>
+                                                    <div class="d-flex justify-content-between">
+                                                        <h5 class="mb-0 me-4">Shipping</h5>
+                                                        <div class="">
+                                                            {% load category_tags %}
+                                                            <p class="mb-0">Flat rate: ${{ total_price|multiply:"0.02" }}</p>
+                                                    </div>
+                                                    
+                                                </div>
+                                                <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
+                                                    <h5 class="mb-0 ps-4 me-4">Total</h5>
+                                                    <p class="mb-0 pe-4">${{ total_price|add:3 }}</p>
+                                                </div>
+                                                <a class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"  href="{% url 'cart_app:checkouts' %}">Proceed Checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <script>
+                                function updateQuantity(productId, change) {
+                                    const quantityInput = document.getElementById(`quantity-${productId}`);
+                                    let currentQuantity = parseInt(quantityInput.value);
+                                    currentQuantity += change;
+                                    if (currentQuantity < 1) {
+                                        currentQuantity = 1; // Prevent quantity from going below 1
+                                    }
+                                    quantityInput.value = currentQuantity;
+                            
+                                    fetch(`/update_cart/${productId}/${currentQuantity}/`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRFToken': '{{ csrf_token }}', // Include CSRF token
+                                        },
+                                    })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            location.reload(); // Reload the page to update the cart
+                                        } else {
+                                            console.error('Failed to update quantity');
+                                        }
+                                    });
+                                }
+                            
+                                function removeFromCart(productId) {
+                                     fetch(`/remove_from_cart/${productId}/`, {
+                                        method: 'POST',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'X-CSRFToken': '{{ csrf_token }}', // Include CSRF token
+                                        },
+                                    })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            location.reload(); // Reload the page to update the cart
+                                        } else {
+                                            console.error('Failed to remove item');
+                                        }
+                                    });
+                                }
+                            </script>
+                            <!-- Cart Page End -->
+                    
+                    
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="row my-5">
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="coupon-box">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" placeholder="Enter your coupon code" aria-label="Coupon code" type="text">
+                                <div class="input-group-append">
+                                    <button class="btn btn-theme" type="button">Apply Coupon</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6">
+                        <div class="update-box">
+                            <input value="Update Cart" type="submit">
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="row my-5">
+                    <div class="col-lg-8 col-sm-12"></div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="order-box">
+                            <h3>Order summary</h3>
+                            <div class="d-flex">
+                                <h4>Sub Total</h4>
+                                <div class="ml-auto font-weight-bold"> $ 130 </div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Discount</h4>
+                                <div class="ml-auto font-weight-bold"> $ 40 </div>
+                            </div>
+                            <hr class="my-1">
+                            <div class="d-flex">
+                                <h4>Coupon Discount</h4>
+                                <div class="ml-auto font-weight-bold"> $ 10 </div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Tax</h4>
+                                <div class="ml-auto font-weight-bold"> $ 2 </div>
+                            </div>
+                            <div class="d-flex">
+                                <h4>Shipping Cost</h4>
+                                <div class="ml-auto font-weight-bold"> Free </div>
+                            </div>
+                            <hr>
+                            <div class="d-flex gr-total">
+                                <h5>Grand Total</h5>
+                                <div class="ml-auto h5"> $ 388 </div>
+                            </div>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="col-12 d-flex shopping-box">
+                        <a href=" " class="ml-auto btn hvr-hover">Checkout</a>
+                    </div>
+                </div>
+        
+            </div>
+        </div>   
+
+        <div class="instagram-box">
+            <div class="main-instagram owl-carousel owl-theme">
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-01.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-02.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-03.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-04.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-05.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-06.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-07.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-08.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-09.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="ins-inner-box">
+                        <img src="{% static 'images/instagram-img-05.jpg' %}" alt="" />
+                        <div class="hov-in">
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-top-box">
+                                <h3>Business Time</h3>
+                                <ul class="list-time">
+                                    <li>Monday - Friday: 08.00am to 05.00pm</li>
+                                    <li>Saturday: 10.00am to 08.00pm</li>
+                                    <li>Sunday: <span>Closed</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-top-box">
+                                <h3>Newsletter</h3>
+                                <form class="newsletter-box">
+                                    <div class="form-group">
+                                        <input class="" type="email" name="Email" placeholder="Email Address*" />
+                                        <i class="fa fa-envelope"></i>
+                                    </div>
+                                    <button class="btn hvr-hover" type="submit">Submit</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-top-box">
+                                <h3>Social Media</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                <ul>
+                                    <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-rss" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-whatsapp" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-widget">
+                                <h4>About Freshshop</h4>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-link">
+                                <h4>Information</h4>
+                                <ul>
+                                    <li><a href="#">About Us</a></li>
+                                    <li><a href="#">Customer Service</a></li>
+                                    <li><a href="#">Our Sitemap</a></li>
+                                    <li><a href="#">Terms &amp; Conditions</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Delivery Information</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 col-sm-12">
+                            <div class="footer-link-contact">
+                                <h4>Contact Us</h4>
+                                <ul>
+                                    <li>
+                                        <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                    </li>
+                                    <li>
+                                        <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                    </li>
+                                    <li>
+                                        <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="footer-copyright">
+            <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
+                <a href="https://html.design/">html design</a></p>
+        </div>
+        <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+    
+        <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/jquery.superslides.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap-select.js' %}"></script>
+        <script src="{% static 'js/inewsticker.js' %}"></script>
+        <script src="{% static 'js/bootsnav.js' %}"></script>
+        <script src="{% static 'js/images-loded.min.js' %}"></script>
+        <script src="{% static 'js/isotope.min.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/baguetteBox.min.js' %}"></script>
+        <script src="{% static 'js/form-validator.min.js' %}"></script>
+        <script src="{% static 'js/contact-form-script.js' %}"></script>
+        <script src="{% static 'js/custom.js' %}"></script>
+    </body>
+    
+    </html>

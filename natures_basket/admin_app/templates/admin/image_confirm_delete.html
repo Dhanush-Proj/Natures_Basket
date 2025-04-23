@@ -1,0 +1,6 @@
+<p>Are you sure you want to delete this image?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirm</button>
+    <a href="{% url 'image_list' product_id=product.product.pk %}">Cancel</a>
+</form>

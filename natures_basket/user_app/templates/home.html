@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h1>Welcome to Nature's Basket!</h1>
+
+    {% if user.is_authenticated %}
+        <p>Hello, {{ user.username }}!</p>
+        <a href="{% url 'user_app:profile' %}">Go to your profile</a><br>
+        <a href="{% url 'user_app:logout' %}">Logout</a>
+    {% else %}
+        <p>Please register or log in.</p>
+        <a href="{% url 'user_app:register' %}">Register</a>
+        <a href="{% url 'user_app:login' %}">Login</a>
+    {% endif %}
+
+    <h2>Featured Products</h2>
+    <p>Check out our latest offerings!</p>
+
+    <ul>
+      {% for product in products %}  <li>{{ product.name }} - ${{ product.price }}</li>
+      {% endfor %}
+    </ul>
+
+
+</body>
+</html>

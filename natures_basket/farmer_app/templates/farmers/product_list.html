@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>My Products</h1>
+<a href="{% url 'farmer_app:farmer_product_create' %}"><button>Add Product</button></a>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.subcategory.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>
+                <a href="{% url 'farmer_app:farmer_product_edit' product.id %}">Edit</a> |
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

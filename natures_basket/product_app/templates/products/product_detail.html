@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="product-detail">
+    <h1>{{ product.name }}</h1>
+    <p>{{ product.description }}</p>
+    <p>Price: ${{ product.price }}</p>
+
+    <h2>Images:</h2>
+    <div>
+        {% for image in images %}
+            <img src="{{ image.image.url }}" alt="Product Image" style="max-width: 300px; max-height: 300px;">
+        {% empty %}
+            <p>No images available.</p>
+        {% endfor %}
+    </div>
+  </div>
+{% endblock %}

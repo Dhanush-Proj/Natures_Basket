@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1>Farmer Dashboard</h1>
+
+<div class="dashboard-section">
+    <h2>My Products</h2>
+    <a href="{% url 'farmer_app:farmer_product_list' %}"><button>View Products</button></a>
+    <a href="{% url 'farmer_app:farmer_product_create' %}"><button>Add Product</button></a>
+</div>
+
+<div class="dashboard-section">
+    <h2>Orders</h2>
+    <a href="{% url 'farmer_app:farmer_order_list' %}"><button>View Orders</button></a>
+</div>
+
+{% endblock %}

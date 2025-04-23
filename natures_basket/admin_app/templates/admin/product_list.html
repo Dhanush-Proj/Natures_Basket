@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Product List</h2>
+  <a href="{% url 'admin_app:admin_product_create' %}">Create New Product</a>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Subcategory</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for product in products %}
+        <tr>
+          <td>{{ product.id }}</td>
+          <td>{{ product.name }}</td>
+          <td>{{ product.price }}</td>
+          <td>{{ product.subcategory.category }}</td>
+          <td>{{ product.subcategory }}</td>
+          <td>
+            <a href="{% url 'admin_app:admin_product_edit' product.id %}">Edit</a>
+            <a href="{% url 'admin_app:admin_product_delete' product.id %}">Delete</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

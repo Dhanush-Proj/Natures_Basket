@@ -1,0 +1,12 @@
+<h1>Images for {{ product.name }}</h1>
+<a href="{% url 'image_create' product_id=product.pk %}">Add Image</a>
+<ul>
+    {% for image in images %}
+        <li>
+            <img src="{{ image.image.url }}" alt="Product Image">
+            <a href="{% url 'image_update' pk=image.pk %}">Update</a>
+            <a href="{% url 'image_delete' pk=image.pk %}">Delete</a>
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'product_detail' pk=product.pk %}">Back to Product</a>

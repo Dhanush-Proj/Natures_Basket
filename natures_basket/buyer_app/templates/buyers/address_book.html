@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Address Book</h2>
+
+  {% if addresses %}
+    <ul>
+      {% for address in addresses %}
+        <li>
+          {{ address.first_name }} {{ address.last_name }}<br>
+          {{ address.address1 }}<br>
+          {% if address.address2 %}{{ address.address2 }}<br>{% endif %}
+          {{ address.city }}, {{ address.state }} {{ address.postal_code }}<br>
+          {{ address.country }}<br>
+          Phone: {{ address.phone_number }}<br>
+          {% if address.default %}<strong>Default Address</strong>{% endif %}
+          <br>
+          <a href="{% url 'user_app:edit_address' address.id %}">Edit</a> | <a href="{% url 'user_app:delete_address' address.id %}">Delete</a>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>You have no saved addresses.</p>
+  {% endif %}
+
+  <p><a href="{% url 'buyer_app:address_book' %}">Add New Address</a></p>
+
+{% endblock %}
