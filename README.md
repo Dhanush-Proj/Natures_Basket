@@ -1,2 +1,2 @@
 An Ecommerce App based on shopify
-[![Uploading image.png…]()](https://dhanush-proj.github.io/public/images/project.png)
+<img width="1062" height="532" alt="image" src="https://github.com/user-attachments/assets/95fcac9b-6e4b-464f-9855-985bd64c58e4" />
